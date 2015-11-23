@@ -443,8 +443,9 @@ public class EditarUsuario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No puede cambiar su rol usted mismo");
                 
             } */
-            if (resp==JOptionPane.YES_OPTION && !tf_idEmpleado.getText().equals("")
+            if (!tf_idEmpleado.getText().equals("")
                     && fila != (-1)){
+                if(resp==JOptionPane.YES_OPTION){
                     //usar mismo entitymanager
                     //EntityManagerFactory fact=Persistence.createEntityManagerFactory("proyectoPU");
                     //EntityManager em=fact.createEntityManager();
@@ -495,10 +496,14 @@ public class EditarUsuario extends javax.swing.JFrame {
                     usuarioList.add(usuarioFind);
                     //entityManager.refresh(u);
                     fila = -1;
+                }else{
+                   vaciarCampos(); 
+                }
                     
             }else{
                 //this.dispose();
-                vaciarCampos();
+                JOptionPane.showMessageDialog(null, "Seleccione algún empleado", "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
             //this.dispose();
             vaciarCampos();

@@ -278,7 +278,8 @@ public class LoginView extends javax.swing.JFrame {
                         Object [] roles = obtenerObjectoConRoles((List)u.get(0).getRolCollection());
                         
                         // Con JCombobox
-                        Object seleccion = JOptionPane.showInputDialog(
+                        Object seleccion = null;
+                        seleccion = JOptionPane.showInputDialog(
                            null,
                            "Seleccione un Rol para Iniciar Sesión",
                            "Selector de Roles",
@@ -286,33 +287,35 @@ public class LoginView extends javax.swing.JFrame {
                            null,  // null para icono defecto
                            roles, 
                            roles[0]);
-                        switch (seleccion.toString()) {
-                        case "Administrador del Sistema":
-                            {
-                                String args[] = new String[1];
-                                args[0] = "Administrador del Sistema";
-                                view.MenuAdminSist.main(args);
+                        if(seleccion != null){
+                            switch (seleccion.toString()) {
+                            case "Administrador del Sistema":
+                                {
+                                    String args[] = new String[1];
+                                    args[0] = "Administrador del Sistema";
+                                    view.MenuAdminSist.main(args);
+                                    break;
+                                }
+                            case "Recepcionista":
+                                {
+                                    String args[] = new String[1];
+                                    args[0] = "Recepcionista";
+                                    view.MenuRecepcionista.main(args);
+                                    break;
+                                }
+                            case "Administrador del Hotel":
+                                {
+                                    String args[] = new String[1];
+                                    args[0] = "Administrador del Hotel";
+                                    ViewAdmHotel.MenuAdminHotel.main(args);
+                                    break;
+                                }
+                            default:
+                                JOptionPane.showMessageDialog(null, "Sin permisos para "
+                                        + "esta operación", "Acceso denegado", JOptionPane.ERROR_MESSAGE);
                                 break;
                             }
-                        case "Recepcionista":
-                            {
-                                String args[] = new String[1];
-                                args[0] = "Recepcionista";
-                                view.MenuRecepcionista.main(args);
-                                break;
-                            }
-                        case "Administrador del Hotel":
-                            {
-                                String args[] = new String[1];
-                                args[0] = "Administrador del Hotel";
-                                ViewAdmHotel.MenuAdminHotel.main(args);
-                                break;
-                            }
-                        default:
-                            JOptionPane.showMessageDialog(null, "Sin permisos para "
-                                    + "esta operación", "Acceso denegado", JOptionPane.ERROR_MESSAGE);
-                            break;
-                    }
+                        }
                         this.dispose();              
                 }else{
                      JOptionPane.showMessageDialog(null,"Contraseña Incorrecta", "Error",JOptionPane.ERROR_MESSAGE);
@@ -389,7 +392,8 @@ public class LoginView extends javax.swing.JFrame {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    //javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
                     break;
                 }
             }

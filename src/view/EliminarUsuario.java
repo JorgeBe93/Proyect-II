@@ -368,14 +368,15 @@ public class EliminarUsuario extends javax.swing.JFrame {
                 // TODO add your handling code here:
                 String antes;
                 String despues;
-            int resp = JOptionPane.showConfirmDialog(null,"¿Desea guardar los cambios?", "Confirmar Modificación",JOptionPane.YES_NO_OPTION );
+            int resp = JOptionPane.showConfirmDialog(null,"¿Desea eliminar al usuario?", "Confirmar Modificación",JOptionPane.YES_NO_OPTION );
            /* if ( LoginView.idUsuario == Integer.parseInt(tf_idEmpleado.getText())){
                 JOptionPane.showMessageDialog(null, "No puede eliminar su propia cuenta", "Error"
                 , JOptionPane.ERROR_MESSAGE);
                 
             }*/ 
-            if (resp==JOptionPane.YES_OPTION && (fila != -1) && 
-                    !tf_idEmpleado.getText().equals("")){
+            if (fila != -1 && 
+                    !tf_idEmpleado.getText().equals("")){ 
+                if (resp==JOptionPane.YES_OPTION){
                     //int fila = masterTableUsuario.getSelectedRow();
                     //int codEmpleado = Integer.parseInt(masterTableUsuario.getValueAt(fila, 0).toString());
                     //empleado = obtenerEmpleado(codEmpleado);
@@ -415,10 +416,13 @@ public class EliminarUsuario extends javax.swing.JFrame {
                     //em.close();
                     JOptionPane.showMessageDialog(null, "Eliminación Exitosa");
                     usuarioList.remove(usu);
-                    vaciarCampos();
-                    
+                    vaciarCampos(); 
                     fila = -1;
                     empleado = null;
+                }     
+            }else{
+                JOptionPane.showMessageDialog(null, "Seleccione algún empleado", "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
             //this.dispose();
             

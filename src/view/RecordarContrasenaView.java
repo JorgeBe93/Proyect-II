@@ -327,13 +327,16 @@ public class RecordarContrasenaView extends javax.swing.JFrame {
 
     private void tf_codemplKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tf_codemplKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            obtenerUsuario();
+        if(!tf_codempl.getText().equals("")){
+            if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+                obtenerUsuario();
+            }
+            if(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE){
+                lbl_nombreEmpleado.setVisible(false);
+                lbl_nombre.setText(null);
+            }    
         }
-        if(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE){
-            lbl_nombreEmpleado.setVisible(false);
-            lbl_nombre.setText(null);
-        }
+        
     }//GEN-LAST:event_tf_codemplKeyPressed
 
     /**
@@ -376,7 +379,7 @@ public class RecordarContrasenaView extends javax.swing.JFrame {
             Empleado empleado = (Empleado)query.getSingleResult();
             lbl_nombre.setText(empleado.getNombre() + " " + empleado.getApellido());
             lbl_nombreEmpleado.setVisible(true);
-        }catch(javax.persistence.NoResultException e){
+        }catch(  javax.persistence.NoResultException | NumberFormatException e ){
             JOptionPane.showMessageDialog(null, "Código de empleado inexistente",
                     "Error", JOptionPane.ERROR_MESSAGE);
             lbl_nombreEmpleado.setVisible(false);
